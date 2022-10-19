@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <nav class="nav-container">
+
+       <button class="hamburger-menu" onclick="App.toggleMobileFilters()">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+            <path d="M 3 8 A 2.0002 2.0002 0 1 0 3 12 L 47 12 A 2.0002 2.0002 0 1 0 47 8 L 3 8 z M 3 23 A 2.0002 2.0002 0 1 0 3 27 L 47 27 A 2.0002 2.0002 0 1 0 47 23 L 3 23 z M 3 38 A 2.0002 2.0002 0 1 0 3 42 L 47 42 A 2.0002 2.0002 0 1 0 47 38 L 3 38 z" />
+        </svg>
+       </button>
+
+        <div class="logo">
+            <h3>Food App</h3>
+        </div>
+        <!-- <div class="search">
+            <input type="text" placeholder="Type a meal name..." class="user-input" value="">
+            <button class="search-btn">Search</button>
+        </div> -->
+
+
+    </nav>
+    <div class="content-container">
+        <div class="mask" onclick="App.toggleMobileFilters()">
+
+        </div>
+
+        <div class="filters-container">
+            <h3>Filters</h3>
+            <div class="tabs-container">
+                <button class="tab-button selected" id="category-btn"
+                    onclick="App.selectFilterTab('category')">Category</button>
+                <button class="tab-button" id="area-btn" onclick="App.selectFilterTab('area')">Area</button>
+            </div>
+            <div id="category" class="tab-content">
+                <div class="filter-item" onclick="App.selectCategory(event, 'Beef')">Beef</div>
+                <div class="filter-item" onclick="App.selectCategory(event, 'Dessert')">Dessert</div>
+                <div class="filter-item" onclick="App.selectCategory(event, 'Pasta')">Pasta</div>
+            </div>
+            <div id="area" class="tab-content hide">
+                <div class="filter-item" onclick="App.selectArea(event, 'Mexican')">Mexican</div>
+                <div class="filter-item" onclick="App.selectArea(event, 'Spanish')">Spanish</div>
+                <div class="filter-item" onclick="App.selectArea(event, 'Italian')">Italian</div>
+            </div>
+        </div>
+
+        <div class="result-container">
+            <div class="result-count">23 items</div>
+            <div class="recipes-container">
+                <div class="recipe-card" data-id-meal="123">
+                    <img src="https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg" alt="">
+                    <h3 class="recipe-title">Recipe Title</h3>
+                </div>
+                <div class="recipe-card">
+                    <img src="https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg" alt="">
+                    <h3 class="recipe-title">Recipe Title</h3>
+                </div>
+                <div class="recipe-card">
+                    <img src="https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg" alt="">
+                    <h3 class="recipe-title">Recipe Title</h3>
+                </div>
+                <div class="recipe-card">
+                    <img src="https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg" alt="">
+                    <h3 class="recipe-title">Recipe Title</h3>
+                </div>
+                <div class="recipe-card">
+                    <img src="https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg" alt="">
+                    <h3 class="recipe-title">Recipe Title</h3>
+                </div>
+            </div>
+
+            <button class="navigate-back hide" onclick="App.navigateBack()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
+                    </path>
+                </svg>
+                <span>Return to recipes</span>
+            </button>
+            <div class="single-recipe-container hide">
+
+            </div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
