@@ -4,6 +4,10 @@ const areaBtn = document.querySelector('#area-btn');
 const categoryBtn = document.querySelector('#category-btn');
 const filtersContainer = document.querySelector('.filters-container');
 const mask = document.querySelector('.mask');
+const searchOpen = document.querySelector('.search-open');
+const searchInput = document.querySelector('.search-input'); 
+const searchResultContainer = document.querySelector('.search-result-container');
+const searchRecipesContainer = document.querySelector('.search-recipes-container');
 
 const recipesContainer = document.querySelector('.recipes-container');
 const resultCount = document.querySelector('.result-count');
@@ -15,7 +19,7 @@ const navigateBack = document.querySelector('.navigate-back');
 const urlByCategory = 'https://www.themealdb.com/api/json/v1/1/filter.php?c='; // + param  name. ex: Seafood
 const urlByArea = 'https://www.themealdb.com/api/json/v1/1/filter.php?a='; // + param  name. ex: Canadian
 const urlSingleMeal = 'https://www.themealdb.com/api/json/v1/1/lookup.php?i='; // + param id
-
+const urlSearchMeal = 'https://www.themealdb.com/api/json/v1/1/search.php?s='; // + param name. meal name. ex: Arrabiata
 
 
 
@@ -63,6 +67,31 @@ const App = {
 
     },
 
+    onInputEnter: (event) => {
+        if(event.key === 'Enter') {
+            App.getSearchResults();        
+        }
+    },
+
+    openSearch: () => {
+        searchOpen.classList.remove('hide');
+    },
+
+    closeSearch: () => {
+        searchOpen.classList.add('hide');
+        searchResultContainer.classList.add('hide');
+    },
+    getSearchResults: () => {
+        searchInput.value;
+        console.log('searchinput: ', searchInput.value);
+        searchResultContainer.classList.remove('hide');
+        App.fetchSearchResults(searchInput.value);
+        // GET value from search-input
+        //Remove hide class from search result container
+        //fetch search results from api
+        //print the array of recipes inside search result container
+    },
+
     selectFilterTab: (tab) => {
 
         if (tab === 'area') {
@@ -107,6 +136,10 @@ const App = {
         singleRecipeContainer.classList.remove('hide');
         singleRecipeContainer.innerHTML = 'Loading...';
         navigateBack.classList.remove('hide');
+
+        
+        App.closeSearch();
+
         App.fetchRecipe(mealId);
     },
 
@@ -184,6 +217,26 @@ const App = {
         `;
         singleRecipeContainer.innerHTML = singleRecipeContent;
     },
+
+    printSearchResults: (meals) => {
+        let mealsRes = '';
+        meals.forEach((meal, idx) => {
+            let newMeal = `
+                <div class="search-recipe-card" data-id-meal="${meal.idMeal}" onclick="App.selectRecipe(${meal.idMeal})">
+                    <img src="${meal.strMealThumb}" alt="">
+                    <h3 class="recipe-title">${meal.strMeal}</h3>
+                </div>
+            `;
+
+            mealsRes = mealsRes + newMeal;
+        });
+        searchRecipesContainer.innerHTML = mealsRes;
+
+        //recipesContainer.innerHTML = mealsRes;
+        //resultCount.innerHTML = meals.length + ' items';
+
+    },
+
     fetchCategory: (categoryName) => {
         App.clearResultContainer();
 
@@ -228,6 +281,16 @@ const App = {
                 App.printFilterAreas(data.meals);
                 App.areaFilters = data.meals;
             });
+    },
+
+    fetchSearchResults:(inputValue) => {
+
+        fetch(urlSearchMeal + inputValue).then((response) => response.json())
+            .then((data) => {
+                console.log('fetch search meal: ', data);
+                App.printSearchResults(data.meals);
+            });
+
     },
 
     init: () => {

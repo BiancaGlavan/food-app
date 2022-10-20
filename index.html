@@ -13,25 +13,55 @@
 
     <nav class="nav-container">
 
-       <button class="hamburger-menu" onclick="App.toggleMobileFilters()">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
-            <path d="M 3 8 A 2.0002 2.0002 0 1 0 3 12 L 47 12 A 2.0002 2.0002 0 1 0 47 8 L 3 8 z M 3 23 A 2.0002 2.0002 0 1 0 3 27 L 47 27 A 2.0002 2.0002 0 1 0 47 23 L 3 23 z M 3 38 A 2.0002 2.0002 0 1 0 3 42 L 47 42 A 2.0002 2.0002 0 1 0 47 38 L 3 38 z" />
-        </svg>
-       </button>
+        <button class="button hamburger-menu" onclick="App.toggleMobileFilters()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+                <path
+                    d="M 3 8 A 2.0002 2.0002 0 1 0 3 12 L 47 12 A 2.0002 2.0002 0 1 0 47 8 L 3 8 z M 3 23 A 2.0002 2.0002 0 1 0 3 27 L 47 27 A 2.0002 2.0002 0 1 0 47 23 L 3 23 z M 3 38 A 2.0002 2.0002 0 1 0 3 42 L 47 42 A 2.0002 2.0002 0 1 0 47 38 L 3 38 z" />
+            </svg>
+        </button>
 
         <div class="logo">
             <h3>Food App</h3>
         </div>
-        <!-- <div class="search">
-            <input type="text" placeholder="Type a meal name..." class="user-input" value="">
-            <button class="search-btn">Search</button>
-        </div> -->
 
+        <!-- SEARCH MOBILE -->
+        <button class="button mobile-search-icon desktop-hide"  onclick="App.openSearch()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                <path
+                    d="M 13 3 C 7.4886661 3 3 7.4886661 3 13 C 3 18.511334 7.4886661 23 13 23 C 15.396652 23 17.59741 22.148942 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148942 17.59741 23 15.396652 23 13 C 23 7.4886661 18.511334 3 13 3 z M 13 5 C 17.430666 5 21 8.5693339 21 13 C 21 17.430666 17.430666 21 13 21 C 8.5693339 21 5 17.430666 5 13 C 5 8.5693339 8.5693339 5 13 5 z" />
+            </svg>
+        </button>
 
+        <div class="search-open hide">
+            <button class="button close-search desktop-hide" onclick="App.closeSearch()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">
+                    </path>
+                </svg>
+            </button>
+            <input type="text" placeholder="Type a meal name..." class="search-input" value="" onkeydown="App.onInputEnter(event)">
+            <button class="button search-btn" onclick="App.getSearchResults()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30">
+                    <path
+                        d="M 13 3 C 7.4886661 3 3 7.4886661 3 13 C 3 18.511334 7.4886661 23 13 23 C 15.396652 23 17.59741 22.148942 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148942 17.59741 23 15.396652 23 13 C 23 7.4886661 18.511334 3 13 3 z M 13 5 C 17.430666 5 21 8.5693339 21 13 C 21 17.430666 17.430666 21 13 21 C 8.5693339 21 5 17.430666 5 13 C 5 8.5693339 8.5693339 5 13 5 z" />
+                </svg>
+            </button>
+        </div>
     </nav>
+
+
+    <div class="search-result-container hide">
+        <div class="search-mask" onclick="App.closeSearch()">
+
+        </div>
+        <div class="search-recipes-container">
+
+        </div>
+    </div>
+
     <div class="content-container">
         <div class="mask" onclick="App.toggleMobileFilters()">
-
         </div>
 
         <div class="filters-container">
@@ -78,7 +108,7 @@
                 </div>
             </div>
 
-            <button class="navigate-back hide" onclick="App.navigateBack()">
+            <button class="button navigate-back hide" onclick="App.navigateBack()">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
                         d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z">

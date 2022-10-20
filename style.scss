@@ -11,6 +11,20 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: $background-default;
+    position: relative;
+}
+
+.button {
+    border: none;
+    outline: none;
+    padding: 0;
+    background: none;
+    cursor: pointer;
+
+    svg {
+        width: 30px;
+        fill: #fff;
+    }
 }
 
 .container {
@@ -27,20 +41,11 @@ body {
     background-color: $color-primary-main;
     padding: 10px;
     height: 60px;
+    position: relative;
 
     .hamburger-menu {
-        border: none;
-        outline: none;
-        padding: 0;
-        background: none;
         display: none;
-
-        svg {
-            width: 30px;
-            fill: #fff;
-            cursor: pointer;
-            margin-right: 10px;
-        }
+        margin-right: 10px;
     }
 
 
@@ -48,10 +53,66 @@ body {
         text-transform: uppercase;
         color: #fff;
         margin-right: auto;
-
+        flex-shrink: 0;
+        
         h3 {
             font-size: 20px;
         }
+    }
+
+    .search-open {
+        background-color: $color-primary-main;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        top: 0;
+        left: 0;
+        display: flex;
+        justify-content: space-between;
+
+        .close-search {
+            margin-right: 10px;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding-left: 20px;
+            border-radius: $border-radius;
+            border: none;
+            outline: none;
+            border: 1px solid #fff;
+
+
+            &:focus {
+                border: 1px solid $color-primary-light;
+            }
+        }
+
+        &.hide {
+            display: none;
+        }
+
+    }
+
+    @media screen and (min-width: 900px) {
+        .search-open {
+            position: relative;
+            padding: 0;
+            
+            .search-input {
+                margin-left: auto;
+            }
+            
+            &.hide {
+                display: flex;
+            }
+        }
+        
+        .logo {
+            min-width: 250px;
+        }
+
     }
 
     .user-input {
@@ -68,15 +129,21 @@ body {
     }
 
     .search-btn {
-        width: 100px;
-        padding: 8px;
-        border: none;
-        outline: none;
         border-radius: $border-radius;
-        text-transform: uppercase;
-        background-color: $background-paper;
         color: $text-primary;
-        cursor: pointer;
+        background-color: $color-primary-light;
+        margin-left: 10px;
+        padding: 0 10px;
+    }
+
+    .mobile-search-icon {
+
+        border-radius: $border-radius;
+        color: $text-primary;
+        background-color: $color-primary-main;
+        margin-left: 10px;
+        padding: 0 10px;
+        height: 100%;
     }
 
 }
@@ -186,6 +253,7 @@ body {
         box-shadow: $box-shadow-2;
         margin: 5px;
         width: 100%;
+        cursor: pointer;
 
         h3 {
             font-size: 22px;
@@ -199,11 +267,13 @@ body {
             border-radius: 15px;
         }
     }
+
     @media screen and (min-width: 400px) {
         .recipe-card {
             max-width: 300px;
         }
     }
+
     @media screen and (min-width: 600px) {
         .recipe-card {
             max-width: 250px;
@@ -240,6 +310,8 @@ body {
         text-transform: uppercase;
         letter-spacing: 1px;
         text-align: center;
+        font-size: 20px;
+        font-weight: 500;
     }
 
     .ingredients {
@@ -283,9 +355,7 @@ body {
 
 }
 
-.hide {
-    display: none;
-}
+
 
 // Media query
 
@@ -312,4 +382,73 @@ body {
         }
     }
 
+}
+
+.hide {
+    display: none;
+}
+
+@media screen and (min-width: 900px) {
+    .desktop-hide {
+        display: none;
+    }
+}
+
+// Search Results
+.search-result-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 60px;
+    left: 0;
+    z-index: 1;
+}
+
+.search-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 60px;
+    left: 0;
+    background: rgba(0, 0, 0, 0.3);
+    top: 0;
+    z-index: -1;
+}
+
+.search-recipes-container {
+    margin: auto;
+    background: $background-paper;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    padding-bottom: 50px;
+
+    .search-recipe-card {
+        display: flex;
+        align-items: center;
+        border: 1px solid $border-color;
+        margin: 10px;
+        margin-bottom: 0;
+        background-color: $background-paper;
+        border-radius: $border-radius;
+        padding: 10px;
+        box-shadow: $box-shadow-2;
+        cursor: pointer;
+        img {
+            width: 40px;
+            border-radius: $border-radius;
+            margin-right: 10px;
+        }
+
+        h3 {
+            font-size: 20px;
+        }
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .search-recipes-container {
+        width: calc(100vw - 260px);
+        margin-left: 260px;
+    }
 }

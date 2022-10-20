@@ -29,6 +29,19 @@ h3 {
 body {
   font-family: "Poppins", sans-serif;
   background: #f0f0f0;
+  position: relative;
+}
+
+.button {
+  border: none;
+  outline: none;
+  padding: 0;
+  background: none;
+  cursor: pointer;
+}
+.button svg {
+  width: 30px;
+  fill: #fff;
 }
 
 .container {
@@ -45,27 +58,63 @@ body {
   background-color: #073b4c;
   padding: 10px;
   height: 60px;
+  position: relative;
 }
 .nav-container .hamburger-menu {
-  border: none;
-  outline: none;
-  padding: 0;
-  background: none;
   display: none;
-}
-.nav-container .hamburger-menu svg {
-  width: 30px;
-  fill: #fff;
-  cursor: pointer;
   margin-right: 10px;
 }
 .nav-container .logo {
   text-transform: uppercase;
   color: #fff;
   margin-right: auto;
+  flex-shrink: 0;
 }
 .nav-container .logo h3 {
   font-size: 20px;
+}
+.nav-container .search-open {
+  background-color: #073b4c;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+}
+.nav-container .search-open .close-search {
+  margin-right: 10px;
+}
+.nav-container .search-open .search-input {
+  flex-grow: 1;
+  padding-left: 20px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  border: 1px solid #fff;
+}
+.nav-container .search-open .search-input:focus {
+  border: 1px solid #219ebc;
+}
+.nav-container .search-open.hide {
+  display: none;
+}
+@media screen and (min-width: 900px) {
+  .nav-container .search-open {
+    position: relative;
+    padding: 0;
+  }
+  .nav-container .search-open .search-input {
+    margin-left: auto;
+  }
+  .nav-container .search-open.hide {
+    display: flex;
+  }
+  .nav-container .logo {
+    min-width: 250px;
+  }
 }
 .nav-container .user-input {
   padding: 8px;
@@ -85,15 +134,19 @@ body {
   color: rgba(0, 0, 0, 0.87);
 }
 .nav-container .search-btn {
-  width: 100px;
-  padding: 8px;
-  border: none;
-  outline: none;
   border-radius: 4px;
-  text-transform: uppercase;
-  background-color: #fff;
   color: rgba(0, 0, 0, 0.87);
-  cursor: pointer;
+  background-color: #219ebc;
+  margin-left: 10px;
+  padding: 0 10px;
+}
+.nav-container .mobile-search-icon {
+  border-radius: 4px;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #073b4c;
+  margin-left: 10px;
+  padding: 0 10px;
+  height: 100%;
 }
 
 .content-container {
@@ -184,6 +237,7 @@ body {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
   margin: 5px;
   width: 100%;
+  cursor: pointer;
 }
 .recipes-container .recipe-card h3 {
   font-size: 22px;
@@ -231,6 +285,8 @@ body {
   text-transform: uppercase;
   letter-spacing: 1px;
   text-align: center;
+  font-size: 20px;
+  font-weight: 500;
 }
 .single-recipe-container .ingredients {
   display: grid;
@@ -264,10 +320,6 @@ body {
   margin-right: 5px;
 }
 
-.hide {
-  display: none;
-}
-
 @media screen and (max-width: 900px) {
   .filters-container {
     position: absolute;
@@ -284,5 +336,69 @@ body {
   }
   .nav-container .hamburger-menu {
     display: block;
+  }
+}
+.hide {
+  display: none;
+}
+
+@media screen and (min-width: 900px) {
+  .desktop-hide {
+    display: none;
+  }
+}
+.search-result-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 60px;
+  left: 0;
+  z-index: 1;
+}
+
+.search-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 60px;
+  left: 0;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  z-index: -1;
+}
+
+.search-recipes-container {
+  margin: auto;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-bottom: 50px;
+}
+.search-recipes-container .search-recipe-card {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  margin: 10px;
+  margin-bottom: 0;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 10px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+.search-recipes-container .search-recipe-card img {
+  width: 40px;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+.search-recipes-container .search-recipe-card h3 {
+  font-size: 20px;
+}
+
+@media screen and (min-width: 900px) {
+  .search-recipes-container {
+    width: calc(100vw - 260px);
+    margin-left: 260px;
   }
 }/*# sourceMappingURL=style.css.map */
