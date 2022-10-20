@@ -69,7 +69,9 @@ const App = {
 
     onInputEnter: (event) => {
         if(event.key === 'Enter') {
-            App.getSearchResults();        
+            searchRecipesContainer.innerHTML = 'Loading...';
+            App.getSearchResults(); 
+
         }
     },
 
@@ -80,6 +82,7 @@ const App = {
     closeSearch: () => {
         searchOpen.classList.add('hide');
         searchResultContainer.classList.add('hide');
+        searchRecipesContainer.innerHTML = 'Loading...';
     },
     getSearchResults: () => {
         searchInput.value;
@@ -219,7 +222,8 @@ const App = {
     },
 
     printSearchResults: (meals) => {
-        let mealsRes = '';
+
+        let mealsRes = `<div class="search-results-count">${meals.length} items</div>`;
         meals.forEach((meal, idx) => {
             let newMeal = `
                 <div class="search-recipe-card" data-id-meal="${meal.idMeal}" onclick="App.selectRecipe(${meal.idMeal})">
