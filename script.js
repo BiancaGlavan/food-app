@@ -142,7 +142,7 @@ const App = {
 
         
         App.closeSearch();
-
+        
         App.fetchRecipe(mealId);
     },
 
@@ -219,6 +219,7 @@ const App = {
             </div>
         `;
         singleRecipeContainer.innerHTML = singleRecipeContent;
+        window.scrollTo(0, 0);
     },
 
     printSearchResults: (meals) => {
